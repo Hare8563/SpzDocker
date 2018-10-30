@@ -1,5 +1,12 @@
 Vagrant.require_version ">= 1.6.0"
+
+# OSがWindowsか判定する
+def windows?
+  (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+end
+
 required_plugins = %w(vagrant-ignition)
+required_plugins << "vagrant-winnfsd" if windows? 
 
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
 unless plugins_to_install.empty?
@@ -49,6 +56,11 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--cpuexecutioncap", 100]
       config.ignition.config_obj = vb
     end
+
+    # dockerイメージのダウンロード
+    config.vm.provision :shell, inline: <<-SHELL
+      docker pull ruby:2.5.3
+    SHELL
 
     # docker-composeのインストール
     config.vm.provision :shell, inline: <<-SHELL
