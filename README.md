@@ -5,9 +5,9 @@ VagrantとVirtualBox, CoreOSで実装した開発環境となります
 当日は、こちらのリポジトリをあらかじめCloneしておいてください
 
 ## 前提
-下記、VirtualBoxとVagrantをそれぞれインストールしておいてください
-VirtualBoxのインストール: http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html?ssSourceSiteId=otnjp
-Vagrantのインストール: https://www.vagrantup.com/
+下記、VirtualBoxとVagrantをそれぞれインストールしておいてください  
+VirtualBoxのインストール: http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html?ssSourceSiteId=otnjp  
+Vagrantのインストール: https://www.vagrantup.com/  
 
 ## 使い方
 1. VMの起動
