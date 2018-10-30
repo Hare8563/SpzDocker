@@ -56,20 +56,5 @@ Vagrant.configure("2") do |config|
       curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > /opt/bin/docker-compose
       chmod +x /opt/bin/docker-compose
     SHELL
-
-    # railsアプリケーションのセットアップ
-    config.vm.provision :shell, inline: <<-SHELL
-      cd /home/core/share/rails-app
-      docker pull ruby:latest
-      docker run --rm -v "$PWD":/usr/src/rails-app -w /usr/src/rails-app ruby:latest bundle init
-      cat << EOS > /home/core/share/rails-app/GemFile 
-# frozen_string_literal: true
-source "https://rubygems.org"
-
-# gem "rails"
-gem 'rails', '~> 5.1.4'
-EOS
-      docker run --rm -v "$PWD":/usr/src/rails-app -w /usr/src/rails-app ruby:latest /bin/bash -c "#{BUNDLE_CONFIG_COMMAND} && #{BUNDLE_SETUP_COMMAND} && #{RAILS_NEW_COMMAND}"
-    SHELL
   end
 end
