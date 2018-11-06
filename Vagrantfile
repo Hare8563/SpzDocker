@@ -60,6 +60,7 @@ Vagrant.configure("2") do |config|
     # dockerイメージのダウンロード
     config.vm.provision :shell, inline: <<-SHELL
       docker pull ruby:2.5.3
+      docker pull mysql:5.7
     SHELL
 
     # docker-composeのインストール
