@@ -1,0 +1,27 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+    ports:
+      - 3306:3306
+    networks:
+      - default
+  web:
+    environment:
+      - MYAPP_DATABASE_PASSWORD=mysql
+      - MYAPP_DATABASE_HOST=db
+    build: rails-app/myapp
+    ports:
+      - 3000:3000
+    networks:
+      - default
+    depends_on:
+      - db
+    working_dir: /usr/src/myapp
+    command: sh ./wait-for-it.sh db root mysql bundle exec rails server -b 0.0.0.0
+
+networks:
+  default:
+    driver: bridge
