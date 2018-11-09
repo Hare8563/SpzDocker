@@ -20,3 +20,11 @@ Vagrantのインストール: https://www.vagrantup.com/
 
 2. VMの終了
 `vagrant halt`でVMを終了します。使わない場合は、終了しておきましょう
+
+
+2018/11/9 追記
+一部の方で、起動できないということがありました。
+
+https://github.com/Hare8563/SpzDocker/issues/2
+
+その場合は、こちらのコメントを参考に、VagrantFileを修正して実行してみてください
